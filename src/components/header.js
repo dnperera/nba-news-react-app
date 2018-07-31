@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/header.css";
+import FontAwesome from "react-fontawesome";
 
 const Header = () => {
+  const navBars = () => {
+    return (
+      <div className="bars">
+        <FontAwesome name="bars" />
+      </div>
+    );
+  };
   const logo = () => {
     return (
       <Link to="/" className="logo">
@@ -13,7 +21,10 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="headerOpt">{logo()}</div>
+      <div className="headerOpt">
+        {navBars()}
+        {logo()}
+      </div>
     </header>
   );
 };
