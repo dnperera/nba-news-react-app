@@ -6,13 +6,14 @@ const htmlWebpackPlugin = new HTMLWebpackPlugin({
   filename: "./index.html"
 });
 module.exports = {
-  entry: ["./src/index.js"],
+  entry: ["babel-polyfill", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: "./public"
+    contentBase: "./public",
+    historyApiFallback: true
   },
   module: {
     rules: [

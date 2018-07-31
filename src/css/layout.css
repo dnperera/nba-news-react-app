@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #eeeeee;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+}
+.logo {
+  flex-grow: 1;
+  padding-top: 10px;
+}
+.logo img {
+  width: 40px;
+}
