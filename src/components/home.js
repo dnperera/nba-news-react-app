@@ -1,6 +1,11 @@
 import React from "react";
+import Slider from "./widgets/newsSlider/slider";
 
 const Home = () => {
-  return <div>Welcome NBA News Home</div>;
+  return (
+    <div>
+      <Slider />
+    </div>
+  );
 };
 export default Home;

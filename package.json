@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
+    "json-server": "json-server --watch db.json --port 3004",
     "start": "webpack-dev-server --mode development --open "
   },
   "repository": {
