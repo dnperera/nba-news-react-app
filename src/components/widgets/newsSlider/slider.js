@@ -7,7 +7,9 @@ class Slider extends Component {
   };
   componentDidMount = async () => {
     const response = await axios.get(
-      "http://localhost:3004/articles?_start=0&_end=3"
+      `http://localhost:3004/articles?_start=${this.props.start}&_end=${
+        this.props.amount
+      }`
     );
     this.setState({
       news: response.data
@@ -15,7 +17,13 @@ class Slider extends Component {
   };
 
   render() {
-    return <SliderTemplates data={this.state.news} type="featured" />;
+    return (
+      <SliderTemplates
+        data={this.state.news}
+        type={this.props.type}
+        settings={this.props.settings}
+      />
+    );
   }
 }
 export default Slider;
