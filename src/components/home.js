@@ -7,7 +7,7 @@ const Home = () => {
     <div>
       <Slider type="featured" start={0} amount={3} settings={{ dots: false }} />
 
-      <NewsList />
+      <NewsList type="card" loadmore={true} start={0} amount={3} />
     </div>
   );
 };
