@@ -3,7 +3,8 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../../../config";
-
+import Button from "../buttons/button";
+import CardInfo from "../cardInfo/cardInfo";
 import "../../../css/newsList.css";
 
 class NewsList extends Component {
@@ -11,7 +12,8 @@ class NewsList extends Component {
     items: [],
     start: this.props.start,
     end: this.props.start + this.props.amount,
-    amount: this.props.amount
+    amount: this.props.amount,
+    teams: []
   };
 
   componentDidMount = () => {
@@ -19,6 +21,14 @@ class NewsList extends Component {
   };
 
   request = async (start, end) => {
+    //check whether teams already loaded. if not load once from the db
+    if (this.state.teams.length === 0) {
+      let results = await axios.get(`${URL}/teams`);
+      this.setState({
+        teams: results.data
+      });
+    }
+
     const response = await axios.get(
       `${URL}/articles?_start=${this.state.start}&_end=${this.state.end}`
     );
@@ -51,6 +61,11 @@ class NewsList extends Component {
               <div>
                 <div className="newsList_item">
                   <Link to={`/articles/${item.id}`}>
+                    <CardInfo
+                      teams={this.state.teams}
+                      teamId={item.teamId}
+                      date={item.date}
+                    />
                     <h2>{item.title}</h2>
                   </Link>
                 </div>
@@ -72,13 +87,13 @@ class NewsList extends Component {
         <TransitionGroup component="div" className="list">
           {this.renderNews(this.props.type)}
         </TransitionGroup>
-        <div
-          onClick={() => {
+        <Button
+          type="loadmore"
+          loadMore={() => {
             this.loadMore();
           }}
-        >
-          Load More
-        </div>
+          cta="Load More News"
+        />
       </div>
     );
   }
